@@ -1,0 +1,41 @@
+<h1>I Need a Job</h1>
+<div class="row">
+    <section class="col-6">
+        <h2>Employer List</h2>
+        <ul class="list-group">
+            <li *ngFor="let employer of employers" class="list-group-item">
+                <a href="#" 
+                    (click)="selectEmployer(employer._id, employer.name, employer.region, employer.description)" 
+                    class="list-group-item active">{{employer.name}}</a>
+                {{employer.region}}
+            </li>
+        </ul>
+    </section>
+    <section class="col-6">
+        <h2>Employer Details</h2>
+        <fieldset class="p-2">
+            <label class="col-2">Name: *</label>
+            <input required [(ngModel)]="name" />
+        </fieldset>
+        <fieldset class="p-2">
+            <label class="col-2">Region: *</label>
+            <select required [(ngModel)]="region">
+                <option>Angus</option>
+                <option>Barrie</option>
+                <option>Ottawa</option>
+                <option>Newmarket</option>
+                <option>Toronto</option>
+            </select>
+        </fieldset>
+        <fieldset class="p-2">
+            <label class="col-2">Description: *</label>
+            <textarea required [(ngModel)]="description"></textarea>
+        </fieldset>
+        <div class="offset-2">
+            <button class="btn btn-primary" (click)="addEmployer()" *ngIf="!_id">Save</button>
+            <button class="btn btn-primary" (click)="updateEmployer()" *ngIf="_id">Save</button>
+            <button class="btn btn-danger m-1" (click)="deleteEmployer(_id)" *ngIf="_id">Delete</button>
+            <button class="btn btn-secondary m-1" (click)="clearForm()">Reset</button>
+        </div>
+    </section>
+</div>
